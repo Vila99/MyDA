@@ -51,8 +51,9 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
   );
 
   return (
-    <div className="d-flex" style={{ maxHeight: '600px' }}>
-      <div className="w-25 bg-dark p-2 rounded" style={{ marginRight: '20px', display: 'flex', flexDirection: 'column' }}>
+    <div className="d-flex flex-column flex-md-row" style={{ maxHeight: '100vh' }}>
+      {/* Sidebar (Lista de Notas) */}
+      <div className="bg-dark p-2 rounded mb-3 mb-md-0 col-12 col-md-3 d-flex flex-column" style={{ maxWidth: '100%', overflowY: 'auto' }}>
         <div className="mb-3 position-relative">
           <input
             type="text"
@@ -63,7 +64,7 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
           />
           <Search className="position-absolute" style={{ right: '10px', top: '50%', transform: 'translateY(-50%)' }} size={20} />
         </div>
-        <div style={{ overflowY: 'auto', flex: 1 }}>
+        <div className="flex-grow-1" style={{ overflowY: 'auto' }}>
           {filteredNotes.length === 0 ? (
             <p className='text-secondary px-2'>No hay notas que coincidan con la búsqueda.</p>
           ) : (
@@ -83,6 +84,7 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
             </ul>
           )}
         </div>
+        {/* Botón de Crear Nueva Nota (debajo de la lista de notas) */}
         <button
           className="btn btn-primary mt-3"
           onClick={() => {
@@ -96,45 +98,49 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
           Crear Nueva Nota
         </button>
       </div>
-
-      <div className="w-75">
-        {showForm ? (
-          <form onSubmit={handleSubmit} className="">
-            <input
-              type="text"
-              placeholder="Título"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="form-control mb-2"
-              required
-            />
-            <textarea
-              placeholder="Contenido de la nota"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="form-control mb-2"
-              rows="4"
-              required
-            />
-            <button type="submit" className="btn btn-primary">
-              {editingIndex !== null ? 'Guardar Cambios' : 'Añadir Nota'}
-            </button>
-            <button type="button" className="btn btn-secondary ms-2" onClick={() => {
-              setTitle('');
-              setContent('');
-              setShowForm(false);
-              onCreateNewNote();
-            }}>
-              Cancelar
-            </button>
-          </form>
-        ) : viewingIndex !== null && notes[viewingIndex] ? (
-          <div className=" p-4 border rounded shadow-sm bg-light">
-            <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-              <h2 className="mb-0">{notes[viewingIndex].title}</h2>
-              <div>
+  
+      {/* Main Content */}
+      <div className="col-12 col-md-9 d-flex flex-column">
+        <div className="flex-grow-1 mx-3">
+          {showForm ? (
+            <form onSubmit={handleSubmit} className="p-3 bg-light rounded">
+              <input
+                type="text"
+                placeholder="Título"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="form-control mb-2"
+                required
+              />
+              <textarea
+                placeholder="Contenido de la nota"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="form-control mb-2"
+                rows="4"
+                required
+              />
+              <button type="submit" className="btn btn-primary">
+                {editingIndex !== null ? 'Guardar Cambios' : 'Añadir Nota'}
+              </button>
+              <button type="button" className="btn btn-secondary ms-2" onClick={() => {
+                setTitle('');
+                setContent('');
+                setShowForm(false);
+                onCreateNewNote();
+              }}>
+                Cancelar
+              </button>
+            </form>
+          ) : viewingIndex !== null && notes[viewingIndex] ? (
+            <div className="p-4 border rounded shadow-sm bg-light d-flex flex-column h-100">
+              <div className="mb-3 flex-grow-1">
+                <h2 className="mb-3">{notes[viewingIndex].title}</h2>
+                <p className="mb-4" style={{ whiteSpace: 'pre-wrap' }}>{notes[viewingIndex].content}</p>
+              </div>
+              <div className="d-flex flex-column flex-md-row">
                 <button 
-                  className="btn btn-warning btn-sm me-2"
+                  className="btn btn-warning btn-sm me-2 mb-2 mb-md-0"
                   onClick={() => onEditNote(viewingIndex)}
                 >
                   Editar
@@ -152,14 +158,14 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
                 </button>
               </div>
             </div>
-            <p className="mb-4" style={{ whiteSpace: 'pre-wrap' }}>{notes[viewingIndex].content}</p>
-          </div>
-        ) : (
-          <p className="my-3 text-center">Selecciona una nota para ver o editar, o crea una nueva nota.</p>
-        )}
+          ) : (
+            <p className="my-3 text-center">Selecciona una nota para ver o editar, o crea una nueva nota.</p>
+          )}
+        </div>
       </div>
     </div>
   );
+  
 };
 
 export default NoteList;
