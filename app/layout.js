@@ -7,6 +7,7 @@ import './styles/globals.css';                  // Tu hoja de estilos global
 import Navbar from './components/Navbar';      // Componente del Navbar
 import Footer from './components/Footer';      // Componente del Footer
 
+
 // Cargar la fuente Poppins de Google Fonts
 const poppins = Poppins({
   weight: ['400', '700'],  // Opciones de peso de la fuente

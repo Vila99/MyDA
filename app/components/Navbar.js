@@ -1,7 +1,13 @@
+'use client'
+
 // app/components/Navbar.js
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div className="container">
@@ -10,20 +16,25 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link href="/" className="nav-link active">HOME</Link>
+            <li className={`nav-item`}>
+              <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>HOME</Link>
             </li>
-            <li className="nav-item">
-              <Link href="/notes" className="nav-link">NOTES</Link>
+            <li className={`nav-item`}>
+              <Link href="/notes" className={`nav-link ${pathname === '/notes' ? 'active' : ''}`}>NOTES</Link>
             </li>
             <div className="d-none d-lg-block px-4">
-                <img src='\favicon.ico' style={{width: '40px', height: '40px'}}></img>
+              <Image
+                src="/favicon.ico"
+                width={40}
+                height={40}
+                alt="Picture of the author"
+              />
             </div>
-            <li className="nav-item">
-              <Link href="/calendar" className="nav-link">TO-DO</Link>
+            <li className={`nav-item`}>
+              <Link href="/calendar" className={`nav-link ${pathname === '/calendar' ? 'active' : ''}`}>TO-DO</Link>
             </li>
-            <li className="nav-item">
-              <Link href="/expenses" className="nav-link">CALENDAR</Link>
+            <li className={`nav-item`}>
+              <Link href="/expenses" className={`nav-link ${pathname === '/expenses' ? 'active' : ''}`}>CALENDAR</Link>
             </li>
           </ul>
         </div>

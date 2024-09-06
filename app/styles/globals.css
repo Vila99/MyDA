@@ -158,7 +158,7 @@ body {
   }
   
   /* app/components/Navbar.css */
-.navbar {
+  .navbar {
     position: fixed; /* O usa sticky si prefieres que se quede en la parte superior durante el scroll */
     top: 0;
     left: 0;
@@ -178,5 +178,26 @@ body {
   .nav-link {
     margin: 0 0.5rem; /* Espacio entre los ítems del menú */
     font-weight: bold;
+  }
+
+  /* styles/globals.css o el archivo CSS que estés usando */
+
+  .nav-link.active {
+    font-weight: bold;
+    color: #f8f9fa; /* Puedes ajustar el color de acuerdo a tu esquema */
+    background-color: none; /* Fondo oscuro para el elemento activo */
+  }
+
+  
+  /* NOTAS */
+
+  .note-list {
+    height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .note-form {
+    height: 80vh;
+    overflow-y: auto;
   }
   
