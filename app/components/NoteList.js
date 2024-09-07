@@ -1,50 +1,55 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Search, Trash2 } from 'lucide-react';
+import { Search, Trash2 } from 'lucide-react'; // Importa íconos para búsqueda y eliminación
 
 const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote, editingIndex }) => {
+  // Estados locales para manejar título, contenido, visibilidad del formulario, nota actual y búsqueda
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [viewingIndex, setViewingIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Efecto para actualizar el formulario cuando se edita una nota o cambian las notas
   useEffect(() => {
     if (editingIndex !== null && notes[editingIndex]) {
       const noteToEdit = notes[editingIndex];
-      setTitle(noteToEdit.title);
-      setContent(noteToEdit.content);
-      setShowForm(true);
-      setViewingIndex(null);
+      setTitle(noteToEdit.title); // Carga el título de la nota a editar
+      setContent(noteToEdit.content); // Carga el contenido de la nota a editar
+      setShowForm(true); // Muestra el formulario
+      setViewingIndex(null); // Oculta la nota visualizada
     } else if (editingIndex === null) {
-      setTitle('');
-      setContent('');
-      setShowForm(false);
+      setTitle(''); // Limpia el título
+      setContent(''); // Limpia el contenido
+      setShowForm(false); // Oculta el formulario
     }
   }, [editingIndex, notes]);
 
+  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (title && content) {
-      const updatedNote = { title, content };
-      onSaveNote(editingIndex, updatedNote);
-      setTitle('');
-      setContent('');
-      setShowForm(false);
+    e.preventDefault(); // Evita el comportamiento por defecto del formulario
+    if (title && content) { // Verifica que haya título y contenido
+      const updatedNote = { title, content }; // Crea una nota actualizada
+      onSaveNote(editingIndex, updatedNote); // Llama a la función de guardado
+      setTitle(''); // Limpia el título
+      setContent(''); // Limpia el contenido
+      setShowForm(false); // Oculta el formulario
     }
   };
 
+  // Función para alternar la visualización de una nota
   const handleViewNote = (index) => {
     if (viewingIndex === index) {
-      setViewingIndex(null);
+      setViewingIndex(null); // Oculta la nota si ya está visible
     } else {
-      setViewingIndex(index);
-      onEditNote(null);
-      setShowForm(false);
+      setViewingIndex(index); // Muestra la nota seleccionada
+      onEditNote(null); // Sale del modo de edición
+      setShowForm(false); // Oculta el formulario
     }
   };
 
+  // Filtra las notas basadas en el término de búsqueda
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     note.content.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,6 +59,7 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
     <div className="d-flex flex-column flex-md-row" style={{ maxHeight: '100vh' }}>
       {/* Sidebar (Lista de Notas) */}
       <div className="bg-dark p-2 rounded mb-3 mb-md-0 col-12 col-md-3 d-flex flex-column" style={{ maxWidth: '100%', overflowY: 'auto' }}>
+        {/* Barra de búsqueda */}
         <div className="mb-3 position-relative">
           <input
             type="text"
@@ -64,6 +70,7 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
           />
           <Search className="position-absolute" style={{ right: '10px', top: '50%', transform: 'translateY(-50%)' }} size={20} />
         </div>
+        {/* Lista de notas */}
         <div className="flex-grow-1" style={{ overflowY: 'auto' }}>
           {filteredNotes.length === 0 ? (
             <p className='text-secondary px-2'>No hay notas que coincidan con la búsqueda.</p>
@@ -72,7 +79,8 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
               {filteredNotes.map((note, index) => (
                 <li
                   key={index}
-                  className="list-group-item"
+                  // Contemplar poner un padding Y para separar las notas
+                  className="list-group-item" 
                   onClick={() => handleViewNote(index)}
                   style={{ cursor: 'pointer' }}
                 >
@@ -138,19 +146,20 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
                 <h2 className="mb-3">{notes[viewingIndex].title}</h2>
                 <p className="mb-4" style={{ whiteSpace: 'pre-wrap' }}>{notes[viewingIndex].content}</p>
               </div>
+              {/* Botones de editar y eliminar nota */}
               <div className="d-flex flex-column flex-md-row">
                 <button 
-                  className="btn btn-warning btn-sm me-2 mb-2 mb-md-0"
+                  className="btn btn-warning btn-sm mx-2 mb-2 mb-md-0"
                   onClick={() => onEditNote(viewingIndex)}
                 >
                   Editar
                 </button>
                 <button 
-                  className="btn btn-danger btn-sm"
+                  className="btn btn-danger mx-2 btn-sm"
                   onClick={() => {
                     if (window.confirm('¿Estás seguro de que quieres eliminar esta nota?')) {
                       onDeleteNote(viewingIndex);
-                      setViewingIndex(null);
+                      setViewingIndex(null); // Oculta la nota después de eliminar
                     }
                   }}
                 >
@@ -165,7 +174,6 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
       </div>
     </div>
   );
-  
 };
 
 export default NoteList;
