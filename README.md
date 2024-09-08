@@ -1,5 +1,8 @@
 
-### Explicación
+### Explicación Notas
+
+PROBLMEAS
+ - Si la nota es muy larga se solapa con el footer y traspasa la pagina.
 
 1. **`NotesPage.js`**:
    - Maneja el estado y la lógica de `localStorage`.

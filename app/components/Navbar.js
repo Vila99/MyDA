@@ -31,10 +31,10 @@ const Navbar = () => {
               />
             </div>
             <li className={`nav-item`}>
-              <Link href="/calendar" className={`nav-link ${pathname === '/calendar' ? 'active' : ''}`}>TO-DO</Link>
+              <Link href="/to-do" className={`nav-link ${pathname === '/to-do' ? 'active' : ''}`}>TO-DO</Link>
             </li>
             <li className={`nav-item`}>
-              <Link href="/expenses" className={`nav-link ${pathname === '/expenses' ? 'active' : ''}`}>CALENDAR</Link>
+              <Link href="/calendar" className={`nav-link ${pathname === '/calendar' ? 'active' : ''}`}>CALENDAR</Link>
             </li>
           </ul>
         </div>

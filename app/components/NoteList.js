@@ -142,7 +142,7 @@ const NoteList = ({ notes, onSaveNote, onDeleteNote, onEditNote, onCreateNewNote
             </form>
           ) : viewingIndex !== null && notes[viewingIndex] ? (
             <div className="p-4 border rounded shadow-sm bg-light d-flex flex-column h-100">
-              <div className="mb-3 flex-grow-1">
+              <div className="mb-3 flex-grow-1" >
                 <h2 className="mb-3">{notes[viewingIndex].title}</h2>
                 <p className="mb-4" style={{ whiteSpace: 'pre-wrap' }}>{notes[viewingIndex].content}</p>
               </div>
