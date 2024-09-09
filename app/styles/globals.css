@@ -5,7 +5,7 @@ body {
     font-family: 'Poppins', sans-serif; /* Aplica la fuente Poppins */
     line-height: 1.6;
     color: #333; /* Color de texto general */
-    background-color: #c1c1c1; /* Color de fondo general */
+    background-color: #b8d998; /* Color de fondo general */
   }
   
   /* Estilos para contenedores generales */
@@ -320,11 +320,11 @@ body {
   }
 
   .rbc-calendar {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   .rbc-header {
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     padding: 10px;
     font-weight: bold;
   }
@@ -337,6 +337,7 @@ body {
   
   .rbc-day-bg {
     transition: all 0.3s ease;
+    background-color: #ffffff;
   }
   
   .rbc-day-bg:hover {
@@ -346,6 +347,7 @@ body {
   .rbc-today {
     background-color: #fffbe6;
   }
+
   
   .rbc-toolbar button {
     color: #333;
@@ -361,3 +363,21 @@ body {
     background-color: #3174ad;
     color: white;
   }
+
+
+  /* Letras que caen */
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Centra verticalmente */
+  font-size: 8rem; /* Tamaño del texto */
+  font-weight: bold; /* Grosor del texto */
+  overflow: hidden; /* Evita el scroll mientras las letras caen */
+}
+
+.letter {
+  display: inline-block;
+  margin: 0 2px; /* Espacio entre las letras */
+}

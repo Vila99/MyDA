@@ -78,7 +78,7 @@ const MyCalendar = () => {
     if (date.getDay() === 0 || date.getDay() === 6) {
       return {
         style: {
-          backgroundColor: '#f0f0f0',
+          backgroundColor: '#c1c1c1',
         }
       };
     }
@@ -105,7 +105,7 @@ const MyCalendar = () => {
 
   return (
     <div className='m-5 vh-100' style={{ height: '' }}>
-      <Calendar
+      <Calendar className=''
         localizer={localizer}
         events={events}
         startAccessor="start"
