@@ -14,6 +14,7 @@ export default function TaskList({ id, tasks, title, onDelete }) {
       <h2>{title}</h2>
       <SortableContext id={id} items={tasks} strategy={verticalListSortingStrategy}>
         <ul
+          className="todolist-container"
           ref={setNodeRef}
           style={{
             backgroundColor: "#f4f4f4",

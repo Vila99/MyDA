@@ -15,7 +15,40 @@ body {
     margin: 0 auto;
     padding: 0 15px;
   }
+
+  .todolist-container{
+    max-height: 350px; /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  .notelist-container{
+    max-height: 400px; /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
   
+  .notesidebar-container{
+    max-height: 400px; /* Ajusta esta altura según tus necesidades */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    border: 1px solid #000;
+    background-color: #000;
+  }
+
+  /* styles.css o en un módulo CSS */
+.list-group-item:nth-child(odd) {
+  background-color: #c1c1c1; /* Color claro para los elementos impares */
+}
+
+.list-group-item:nth-child(even) {
+  background-color: #e9ecef; /* Color diferente para los elementos pares */
+}
+
+
   /* Encabezados */
   h1, h2, h3, h4, h5, h6 {
     margin: 0 0 15px;
@@ -201,3 +234,130 @@ body {
     overflow-y: auto;
   }
   
+
+  /* CSS CALENDARIO */
+
+  .event-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .event-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  
+  .event-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .event-form input,
+  .event-form select,
+  .event-form button {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .event-form button {
+    cursor: pointer;
+  }.event-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .event-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  
+  .event-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .event-form input,
+  .event-form select,
+  .event-form button {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .event-form button {
+    cursor: pointer;
+  }
+  
+  .delete-button {
+    background-color: #ff4136;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff7a6e;
+  }
+
+  .rbc-calendar {
+    font-family: Arial, sans-serif;
+  }
+  
+  .rbc-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .rbc-event {
+    background-color: #3174ad;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .rbc-day-bg {
+    transition: all 0.3s ease;
+  }
+  
+  .rbc-day-bg:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .rbc-today {
+    background-color: #fffbe6;
+  }
+  
+  .rbc-toolbar button {
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .rbc-toolbar button:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .rbc-toolbar button.rbc-active {
+    background-color: #3174ad;
+    color: white;
+  }

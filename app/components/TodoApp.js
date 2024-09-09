@@ -26,6 +26,7 @@ export default function ToDoApp() {
     })
   );
 
+
   const handleDragStart = (event) => {
     const { active } = event;
     setActiveId(active.id);
@@ -102,6 +103,7 @@ export default function ToDoApp() {
 
   return (
     <>
+    <div className="m-5">
       <input
         className="my-3 ms-2 rounded border"
         type="text"
@@ -122,7 +124,7 @@ export default function ToDoApp() {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="" style={{ display: "flex", justifyContent: "space-between" }}>
           <TaskList
             id="pending"
             tasks={tasks.pending}
@@ -144,6 +146,7 @@ export default function ToDoApp() {
           {activeId ? <TaskItem id={activeId} task={findTask(activeId)} /> : null}
         </DragOverlay>
       </DndContext>
+      </div>  
     </>
   );
 }

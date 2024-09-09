@@ -7,21 +7,13 @@
 │   ├── Footer.js         # Pie de página (si es necesario)
 │   ├── NoteItem.js       # Componente para cada nota en la lista de notas
 │   ├── TaskItem.js       # Componente para cada tarea en la lista de tareas
-│   ├── ExpenseItem.js    # Componente para cada gasto en el controlador de gastos
-│   ├── CalendarEvent.js  # Componente para cada evento en el calendario
 │
 ├── /notes                # Carpeta para la sección de Notas
-│   ├── layout.js         # Layout específico para la página de Notas
 │   ├── page.js           # Página principal para la gestión de Notas
 ├── /todo                 # Carpeta para la sección de Tareas (To-Do)
-│   ├── layout.js         # Layout específico para la página de Tareas
 │   ├── page.js           # Página principal para la lista de Tareas
 ├── /calendar             # Carpeta para la sección del Calendario
-│   ├── layout.js         # Layout específico para la página del Calendario
 │   ├── page.js           # Página principal del Calendario
-├── /expenses             # Carpeta para la sección del Control de Gastos
-│   ├── layout.js         # Layout específico para la página de Gastos
-│   ├── page.js           # Página principal del Control de Gastos
 ├── layout.js             # Layout general de toda la aplicación (opcional)
 ├── page.js               # Página principal de la aplicación
 │
