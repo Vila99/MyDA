@@ -7,6 +7,10 @@ import './styles/globals.css';                  // Tu hoja de estilos global
 import Navbar from './components/Navbar';      // Componente del Navbar
 import Footer from './components/Footer';      // Componente del Footer
 
+export const metadata = {
+  title: "MYAPP",
+  description: "La web de tu día a día.",
+};
 
 // Cargar la fuente Poppins de Google Fonts
 const poppins = Poppins({
@@ -20,7 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={poppins.variable}> {/* Aplica la fuente */}
       <body>
         <Head>
-          <link rel="stylesheet" href="/custom.css" /> {/* Ejemplo de hoja de estilos personalizada */}
+
         </Head>
 
         {/* Scripts de Bootstrap y Popper.js con lazyOnload */}
