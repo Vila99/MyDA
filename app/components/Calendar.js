@@ -9,23 +9,28 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
-  const [events, setEvents] = useState(() => {
-    const savedEvents = localStorage.getItem('calendarEvents');
-    return savedEvents
-      ? JSON.parse(savedEvents).map(event => ({
-          ...event,
-          start: new Date(event.start),
-          end: new Date(event.end)
-        }))
-      : [];
-  });
-  
+  const [events, setEvents] = useState([]);
   const [view, setView] = useState(Views.MONTH);
   const [showEventForm, setShowEventForm] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('calendarEvents', JSON.stringify(events));
+    // Load events from localStorage only on the client side
+    const savedEvents = typeof window !== 'undefined' ? localStorage.getItem('calendarEvents') : null;
+    if (savedEvents) {
+      setEvents(JSON.parse(savedEvents).map(event => ({
+        ...event,
+        start: new Date(event.start),
+        end: new Date(event.end)
+      })));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save events to localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('calendarEvents', JSON.stringify(events));
+    }
   }, [events]);
 
   const handleSelectSlot = ({ start, end }) => {
@@ -86,20 +91,22 @@ const MyCalendar = () => {
   };
 
   const scheduleNotification = (event) => {
-    if (!("Notification" in window)) {
-      alert("Este navegador no soporta notificaciones de escritorio");
-    } else if (Notification.permission === "granted") {
-      setTimeout(() => {
-        new Notification(event.title, {
-          body: `Evento en 5 minutos: ${event.title}`,
+    if (typeof window !== 'undefined') {
+      if (!("Notification" in window)) {
+        alert("Este navegador no soporta notificaciones de escritorio");
+      } else if (Notification.permission === "granted") {
+        setTimeout(() => {
+          new Notification(event.title, {
+            body: `Evento en 5 minutos: ${event.title}`,
+          });
+        }, event.start.getTime() - Date.now() - 5 * 60 * 1000);
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === "granted") {
+            scheduleNotification(event);
+          }
         });
-      }, event.start.getTime() - Date.now() - 5 * 60 * 1000);
-    } else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === "granted") {
-          scheduleNotification(event);
-        }
-      });
+      }
     }
   };
 
